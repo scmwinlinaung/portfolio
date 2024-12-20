@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../css/content.css">
+</head>
+
+<body>
+    <p>What is the Singleton Design Pattern?</p>
+    <p>Singleton design pattern ကတော့ design pattern တွေထဲမှာ အရိုးရှင်းဆုံးနဲ့အလွယ်ဆုံး pattern တခုပေါ့နော် သူကတော့
+        creational design pattern အမျိုးအစားထဲကဖြစ်ပီးတော့ ဒီ pattern မှာဆိုရင် singleton ဆိုတဲ့ class
+        လေးတခုပါပီးတော့အဲထဲမှာဆိုရင် object create လုပ်တဲ့ code လေးတွေပါပီးတော့ အဓိကကတော့ object တခု create
+        လုပ်တဲ့ချိန်မှာ သူနဲ့ ပက်သတ်တဲ့ object ဆောက်တဲ့ချိန်မှာ အဲ object တခုတည်းရှိတာသေချာစေပီးတော့ ရှိပီးသားဆို ရင်
+        ရှိပီးသားကိုထုတ်ပေး ပီးတော့ အသစ် တခုထပ်မဆောက်တော့ပါဘူး singleton design pattern ရဲ့ရည်ရွယ်ချက်ကလည်းအဲတာပါဘဲ
+        singleton designမှာ ပြသာနာတခုရှိပါတယ် အဲဒါကတော့ single thread တခုတည်းနဲ့ singleton
+        classကိုခေါ်ရင်ပြသာနာမရှိပေမယ့် thread တခုထက်ပိုပီး သုံးပီး singleton classကိုခေါ်ရင်ပြသာနာတခုရှိပါတယ် အဲဒါက
+        တော့ example 2 က singleton classထဲက getInstance method ကိုတချက်ကြည့်ကြည့်ပါ အဲမှာဆိုsingleton object
+        ဆောက်ထားတာတွေ့မှာပါ ဒါပေမယ့် condition လေးတခုစစ်ထားပါတယိ သူ့ရဲ့ instance က null ဖြစ်မှသာအသစ်တခုဆောက်မှာပါ
+        example 2 မှာ thread 3ခုခွဲပီးတော့ singleton class က getInstance method ခေါ်တဲ့ချိန်မှာ instance == null
+        condition ကthread သုံးခုလုံးအတွက်မှန်နေမှာပါ ဘာလို့လဲဆိုတော့ သုံးခုလုံးက တပြိုငိနက်တည်း run သွားလို့ပါ တပြိုင်
+        နက်တည်း run သွားတဲ့ အတွက် instance variable ထဲမှာ thread သုံးခုလုံးခေါ်တဲ့ချိန်မှာ nullဘဲရှိနေမှာပါ instance က
+        null ဖြစ်တဲ့အတွက် အသစ်သုံးခုဆောကိသွားမှာပါ အဲလိုဆိုရင် singleton class ရဲ့ အဓိက
+        ရည်ရွယ်ချက်ကိုလည်းရောက်မှာမဟုတ်တော့ပါဘူး အဲပြသာနာကိုဖြေရှင်းဖို့အတွက်က example 3ကိုကြည့်ပါ synchronized ဆိုတဲ့
+        ကောင်လေး ကိုသုံးပီးတော့ thread တွေကိုတပြိုငိနက်တည်း မ run တော့ဘဲ တခုပီးတခုဘဲ run ခိုင်းလိုက်တာပါ Example
+        3မှာဆိုရင် dcl ( double checke locking ) ကို သုံးထားပါတယိ အဲတာကိုသုံးတာ က အားနည်းချကိတခုရှိနေပါတယ် ကိုယ့်
+        application ရဲ့ performance ကိုကျဆင်းစေနိုငိပါတယ် ပထမမှာ instance ကို result variable ထဲထည့်တယ် ပီးတော့ null
+        ဖြစ်မဖြစ် စစ်ပီးတော့ null မဟုတ်ရင် return ပြန်လိုက်တယ် ရုတ်တရက်ကြည့်ရင်တော့ အဲ code ကမလိုသလိုပါဘဲ single thread
+        app အနေနဲ့ မဟုတ်ဘဲ multi thread အနေနဲ့ စဉ်းစားကြည့်ပါ thread တွေတပြိုင်နက်တည်းလုပ်တယ်ဆိုတာ ရုတ်တရက်ကြည့်ရင်
+        ဟုတ်သလိုလိုရှိပေမယ့် တကယ်တော့မဟုတ်ပါဘူး ရှုပ်များသွားလားဗျThread တခု မှာ အလုပ်၃ခုရှိတယ် ဆိုပါစို့ thread 1ရဲ့
+        ပထမအလုပ် ပီးရင် ဒုတိယအလုပ်ကိုဆက်မလုပ်ဘဲ thread 2ရဲ့ ပထမအလုပ်ကိုလုပ်လိုက်တာမျိုးပေါ့ အဲလို လုပ်ခြင်းအားဖြင့်
+        thread တခုနဲ့ တခု က ပြိုင်တူပီး သလိုဖြစ်သွားတာပါ code ကိုပြန်သွားကြစို့Thread 1 က ပထမ check တဲ့နေရာမှာ null
+        ဖြစ်တဲ့ အတွက် return မပြန်ဘဲ ဒုတိယကိုဆက်သွားမယ်ဒါပေမယ့် thread 2ကိုလုပ်တဲ့ချိန်မှာ ပထမ thread1 မှာ result က null
+        မဟုတ်တဲ့အတွကိ အော်ကို ဆက်မသွားဘဲ result ကိုပြန်လိုက်ပါတယ် ဒါဆိုရင် singleton class ရဲ့
+        မူလရည်ရွယ်ချက်ကိုလည်းပြန်လည်ရရှိမှာဖြစ်ပါတယ် singleton design pattern ကဘယ်လို နေရာမျိုးမှာသုံးတာ များလဲ ဆိုတော့
+        database connection ဆောက်တဲ့နေရာမျိုးမှာသုံးပါတယ် ဘာလို့ဆိုတော့ database connection ဆောက်တဲ့ချိန်မှာ
+        တခါဆောကိပီးရင် အသစ်ဆောက်စရာမလိုဘဲ ရှိပီးသားကိုထုတ်ပေးဖို့ဘဲလိုတာမို့ပါ ဒီလောက်ဆိုနားလည်ပီလို့ထငိပါတယ် :) : ) : )
+        singleton pattern ကိုသုံးထားတဲ့ java core libraries သုံးခုရှိပါတယ် အဲဒါတွေကတော့
+
+        java.lang.Runtime#getRuntime()
+
+        java.awt.Desktop#getDesktop()
+
+        java.lang.System#getSecurityManager()</p>
+</body>
+<p>Example1 Single Thread</p>
+<pre>
+<code>
+Singleton.java
+
+public final class Singleton {
+    private static Singleton instance;
+    public String value;
+
+    private Singleton(String value) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        if (instance == null) {
+            instance = new Singleton(value);
+        }
+        return instance;
+    }
+}
+</code>
+</pre>
+<pre>
+<code>
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("If you see the same value, then singleton was reused (yay!)" + "\n" +
+                "If you see different values, then 2 singletons were created (booo!!)" + "\n\n" +
+                "RESULT:" + "\n");
+        Singleton singleton = Singleton.getInstance("Mysql");
+        Singleton anotherSingleton = Singleton.getInstance("Mariadb");
+        System.out.println(singleton.value);
+        System.out.println(anotherSingleton.value);
+    }
+}
+</code>
+</pre>
+<p>Example 2 Multi Thread</p>
+<pre>
+<code>
+Singleton.java
+
+public final class Singleton {
+    private static Singleton instance;
+    public String value;
+
+    private Singleton(String value) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        if (instance == null) {
+            instance = new Singleton(value);
+        }
+        return instance;
+    }
+}
+</code>
+</pre>
+<pre>
+<code>
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("If you see the same value, then singleton was reused (yay!)" + "\n" +
+                "If you see different values, then 2 singletons were created (booo!!)" + "\n\n" +
+                "RESULT:" + "\n");
+        Thread threadMysql = new Thread(new ThreadMysql());
+        Thread threadMariadb = new Thread(new ThreadMariadb());
+        Thread threadPostgresql = new Thread(new ThreadPostgresql());
+        threadMysql.start();
+        threadMariadb.start();
+        threadPostgresql.start();
+    }
+
+    static class ThreadMysql implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Mysql");
+            System.out.println(singleton.value);
+        }
+    }
+
+    static class ThreadMariadb implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Mariadb");
+            System.out.println(singleton.value);
+        }
+    }
+
+    static class ThreadPostgresql implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Postgresql");
+            System.out.println(singleton.value);
+        }
+    }
+}
+</code>
+</pre>
+<p>Example 3 Thread Safe</p>
+<pre>
+<code>
+Singleton.java
+
+public final class Singleton {
+
+    private static volatile Singleton instance;
+
+    public String value;
+
+    private Singleton(String value) {
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        Singleton result = instance;
+        if (result != null) {
+            return result;
+        }
+        synchronized(Singleton.class) {
+            if (instance == null) {
+                instance = new Singleton(value);
+            }
+            return instance;
+        }
+    }
+}
+</code>
+</pre>
+<pre>
+<code>
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("If you see the same value, then singleton was reused (yay!)" + "\n" +
+                "If you see different values, then 2 singletons were created (booo!!)" + "\n\n" +
+                "RESULT:" + "\n");
+        Thread threadMysql = new Thread(new ThreadMysql());
+        Thread threadMariadb = new Thread(new ThreadMariadb());
+        Thread threadPostgresql = new Thread(new ThreadPostgresql());
+        threadMysql.start();
+        threadMariadb.start();
+        threadPostgresql.start();
+    }
+
+    static class ThreadMysql implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Mysql");
+            System.out.println(singleton.value);
+        }
+    }
+
+    static class ThreadMariadb implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Mariadb");
+            System.out.println(singleton.value);
+        }
+    }
+
+    static class ThreadPostgresql implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Postgresql");
+            System.out.println(singleton.value);
+        }
+    }
+}
+
+</code>
+</pre>
+
+</html>

@@ -72,7 +72,10 @@
   .navbar_link:hover {
 	color: #88e788;
   }
-  
+  .navbar_link.active{
+	color: #88e788;
+  }
+
   /* Responsive Styles for Mobile */
   @media screen and (max-width: 768px) {
 

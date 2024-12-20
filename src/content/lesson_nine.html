@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../css/content.css">
+</head>
+
+<body>
+    <p>Bridge Design Pattern</p>
+    <p>Bridge design pattern ကတော့ structural design pattern အမျိုးအစားထဲက တခုဖြစ်ပီးတော့ သူ့ရဲ့အဓိကအလုပ်ကတော့
+        abstraction class နဲ့ implementation class ကြားကိုခွဲနိုင်တာပေါ့နော်အဓိကကတော့ abstraction classနဲ့
+        implementation class တွေကို decouple လုပ်လိုက်တာပါအဲလိုလုပ်တော့ ဘာအားသာချက်ရလဲ ဆိုတော့ abstraction class မှာဘဲ
+        အပြောင်းအလဲလုပ်လုပ်၊ implementation class တွေမှာဘဲ အပြောင်းအလဲလုပ်လုပ် တခုနဲ့တခု အမှီအခိုကင်းကင်းနဲ့
+        ပြောင်းလဲနိုင်သွားတယ် မဟုတ်ရင် တခုပြောင်းရင်ကျန်တာတွေပါလိုက်ပြောင်းရနိုင်တယ် class တခုလုံးရဲ့ structure ကို
+        ပြောင်းလဲရင်တောင်မှ တခုနဲ့တခု အမှီအခိုကင်းကင်းနဲ့ပြောင်းလဲနိုင်သွားတယ် အဲလိုတခုနဲ့တခု အမှီအခို ကင်း ကင်း
+        နဲ့ပြောင်းနိုင်အောင်ကြားထဲမှာ interface လေးတခုခံပေးရပါတယ်အဲကောင်လေးက abstraction classနဲ့ implementation class
+        တွေကြားမှာ ပေါင်းကူးတံတား (bridge) တခုအနေနဲ့အလုပ်လုပ်ပေးပါတယိ အောက်မှာပြထားတဲ့ example မှာတော့ RenderButton,
+        RenderCheckbox, RenderRadioတိုက implementation class တွေဖြစ်ပီးတော့ OS ကတော့ abstraction class ပေါ့နော်
+        သူတိုကြားက ပေါင်းကူးတံတားလုပ်ပေးတဲ့ interface လေးကတော့ UIEngine ဆိုတဲ့ကောင်လေးပါ OS abstract class မှာ
+        constructor injection ကိုသုံးပီးတော့ UIEngine interface လေးကိုလှမ်းခေါ်သုံးလိုက်တာအဲနားနေရာလေးကဘဲ abstract class
+        နဲ့ implementation class တွေကြားမှာပေါင်ကူးလုပ်ပေးသွားတာ ဒီလောက်ဆို နားလည်ပီလိုထင်ပါတယ်
+    </p>
+    <pre>
+<code>
+UIEngine.java
+
+public interface UIEngine {
+     void processing();
+}
+</code>
+</pre>
+    <pre>
+<code>
+OS.java
+
+// bridge design pattern
+// abstraction in bridge pattern
+abstract class OS {
+    UIEngine engine1;
+    UIEngine engine2;
+    protected OS(UIEngine engine1, UIEngine engine2)
+    {
+        this.engine1 = engine1;
+        this.engine2 = engine2;
+    }
+
+    abstract public void render();
+}
+</code>
+</pre>
+    <pre>
+<code>
+RenderButton.java
+
+public class RenderButton implements  UIEngine{
+    @Override
+    public void processing() {
+        System.out.println("Rendering button UI");
+    }
+}j
+</code>
+</pre>
+    <pre>
+<code>
+RenderCheckbox.java
+
+public class RenderCheckbox implements UIEngine{
+    @Override
+    public void processing() {
+        System.out.println("Rendering checkbox UI");
+    }
+}
+</code>
+</pre>
+    <pre>
+<code>
+RenderRadio.java
+
+public class RenderRadio implements UIEngine{
+    @Override
+    public void processing() {
+        System.out.println("Render Radio UI");
+    }
+}
+</code>
+</pre>
+    <pre>
+<code>
+Linux.java
+
+public class Linux extends OS{
+    protected Linux(UIEngine engine1, UIEngine engine2) {
+        super(engine1, engine2);
+    }
+
+    @Override
+    public void render() {
+        System.out.println("Rendering in linux os");
+        engine1.processing();
+        engine2.processing();
+    }
+}
+
+</code>
+</pre>
+
+    <pre>
+<code>
+Mac.java
+
+public class Mac extends OS{
+    protected Mac(UIEngine engine1, UIEngine engine2) {
+        super(engine1, engine2);
+    }
+
+    @Override
+    public void render() {
+        System.out.println("Rendering in mac os");
+        engine1.processing();
+        engine2.processing();
+    }
+}
+
+</code>
+</pre>
+    <pre>
+<code>
+Window.java
+
+public class Window extends OS{
+    protected Window(UIEngine engine1, UIEngine engine2) {
+        super(engine1, engine2);
+    }
+
+    @Override
+    public void render() {
+        System.out.println("Rendering in window os");
+        engine1.processing();
+        engine2.processing();
+    }
+}
+
+</code>
+</pre>
+    <pre>
+<code>
+Main.java
+
+public class Main {
+    public static void main(String[] args)
+    {
+        OS os1 = new Window(new RenderButton(), new RenderCheckbox());
+        os1.render();
+        OS os2 = new Linux(new RenderRadio(), new RenderCheckbox());
+        os2.render();
+        OS os3 = new Mac(new RenderCheckbox(), new RenderButton());
+        os3.render();
+    }
+}
+
+</code>
+</pre>
+</body>
+
+</html>

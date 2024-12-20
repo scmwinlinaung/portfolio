@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="../css/content.css">
+</head>
+
+<body>
+    <p>What is the Adapter Design Pattern?</p>
+    <p>Adapter design pattern ကတော့ design pattern တွေ အများကြီး ရှိတဲ့ထဲကမှ structural design pattern အောက်မှာရှိတဲ့
+        design pattern တခုပါ သူကလဲ အတော်လေးအသုံးများပါတယ် သူ့ရည်ရွယ်ချက် ကဘာလဲ တခုနဲ့ တခု compatible မဖြစ်တဲ့ object
+        တွေကြားမှာ အတူတွဲအလုပ်လုပ်နိုင်ဖိုပါ ဥပမာ ဗျာ အိမ်တွေမှာ ပလပ်ခုံရှိတယိ အဲပလပ်ခုံမှာ 2 pin ဘဲထိုးလို ရမယ်
+        computer က 3 pin ဆိုရင် ဒီတိုင်းထိုးလိုမရတော့ဘူး ကြားထဲမှာအောက်က ပုံက adapter မျိုးလိုအပ်တယ် adapter design
+        pattern ကလည်းအဲလိုမျိုးအလုပ်လုပ်တယ် လွယ်ကူအောင် အောက်မှာ example နှစ်ခုနဲ့တွဲရှင်းထားပါတယ် ပထမတခု ကတော့
+        ကိုယ်တိုင်ရေးထားတာပါ ဒုတိယဟာက တော့ refactoring.guru website က example လေးပါ
+    </p>
+    <p>Example 1
+    </p>
+    <pre>
+<code>
+
+PhotoViewer.java
+
+public interface PhotoViewer {
+
+public void open(String photoType, String filename);
+
+}
+</code>
+</pre>
+    <pre>
+<code>
+AdvancedPhotoViewer.java
+
+    public interface AdvancedPhotoViewer {
+
+        public void openJPG(String filename);
+
+        public void openPNG(String filename);
+
+    }
+</code>
+</pre>
+
+    <pre>
+<code>
+JPGViewer.java
+
+public class JPGViewer implements AdvancedPhotoViewer{
+
+@Override
+
+public void openJPG(String filename) {
+
+System.out.println(“Open the jpg file name = “ + filename);
+
+}
+
+@Override
+
+public void openPNG(String filename) {
+
+// do nothing
+
+}
+
+}
+</code>
+</pre>
+    <pre>
+<code>
+PNGViewer.java
+
+public class PNGViewer implements AdvancedPhotoViewer{
+
+@Override
+
+public void openJPG(String filename) {
+
+// do nothing
+
+}
+
+@Override
+
+public void openPNG(String filename) {
+
+System.out.println(“Open the png file name = “ + filename);
+
+}
+
+}
+
+</code>
+</pre>
+    <pre>
+<code>
+PhotoAdapter.java
+
+public class PhotoAdapter implements PhotoViewer{
+
+AdvancedPhotoViewer advancedPhotoViewer;
+
+public PhotoAdapter(String photoType){
+
+if(photoType.equalsIgnoreCase(“jpg”) ){
+
+advancedPhotoViewer = new JPGViewer();
+
+}else if (photoType.equalsIgnoreCase(“png”)){
+
+advancedPhotoViewer = new PNGViewer();
+
+}
+
+}
+
+@Override
+
+public void open(String photoType, String filename) {
+
+if(photoType.equalsIgnoreCase(“jpg”)){
+
+advancedPhotoViewer.openJPG(filename);
+
+}
+
+else if(photoType.equalsIgnoreCase(“png”)){
+
+advancedPhotoViewer.openPNG(filename);
+
+}
+
+}
+
+}
+
+
+</code>
+</pre>
+    <pre>
+<code>
+ImageViewer.java
+
+public class ImageViewer implements PhotoViewer{
+
+PhotoAdapter photoAdapter;
+
+@Override
+
+public void open(String photoType, String filename) {
+
+//photoAdapter is providing support to play other file formats
+
+if(photoType.equalsIgnoreCase(“jpg”) || photoType.equalsIgnoreCase(“png”)){
+
+photoAdapter = new PhotoAdapter(photoType);
+
+photoAdapter.open(photoType, filename);
+
+}
+
+else{
+
+System.out.println(“Invalid image. “ + photoType + “ format not supported”);
+
+}
+
+}
+
+}
+
+</code>
+</pre>
+    <pre>
+<code>
+Main.java
+
+public class Main {
+
+public static void main(String[] args) {
+
+ImageViewer imageViewer = new ImageViewer();
+
+imageViewer.open(“jpg”, “myPhoto1.jpg”);
+
+imageViewer.open(“png”, “myPhoto2.png”);
+
+imageViewer.open(“gif”, “myPhoto3.gif”);
+
+}
+
+}
+
+
+</code>
+</pre>
+    <p>Example 2</p>
+    <pre>
+<code>
+RoundHole.java
+
+public class RoundHole {
+    private double radius;
+
+    public RoundHole(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public boolean fits(RoundPeg peg) {
+        boolean result;
+        result = (this.getRadius() >= peg.getRadius());
+        return result;
+    }
+}
+
+</code>
+</pre>
+    <pre>
+<code>
+RoundPeg.java
+
+public class RoundPeg {
+    private double radius;
+
+    public RoundPeg() {}
+
+    public RoundPeg(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+}
+</code>
+</pre>
+    <pre>
+<code>
+SquarePeg.java
+
+public class SquarePeg {
+    private double width;
+
+    public SquarePeg(double width) {
+        this.width = width;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getSquare() {
+        double result;
+        result = Math.pow(this.width, 2);
+        return result;
+    }
+}
+</code>
+</pre>
+    <pre>
+<code>
+SquarePegAdapter.java
+
+public class SquarePegAdapter extends RoundPeg {
+    private SquarePeg peg;
+
+    public SquarePegAdapter(SquarePeg peg) {
+        this.peg = peg;
+    }
+
+    @Override
+    public double getRadius() {
+        double result;
+        // Calculate a minimum circle radius, which can fit this peg.
+        result = (Math.sqrt(Math.pow((peg.getWidth() / 2), 2) * 2));
+        return result;
+    }
+}
+</code>
+</pre>
+    <pre>
+<code>
+Demo.java
+
+
+public class Demo {
+    public static void main(String[] args) {
+        // Round fits round, no surprise.
+        RoundHole hole = new RoundHole(5);
+        RoundPeg rpeg = new RoundPeg(5);
+        if (hole.fits(rpeg)) {
+            System.out.println("Round peg r5 fits round hole r5.");
+        }
+
+        SquarePeg smallSqPeg = new SquarePeg(2);
+        SquarePeg largeSqPeg = new SquarePeg(20);
+        // hole.fits(smallSqPeg); // Won't compile.
+
+        // Adapter solves the problem.
+        SquarePegAdapter smallSqPegAdapter = new SquarePegAdapter(smallSqPeg);
+        SquarePegAdapter largeSqPegAdapter = new SquarePegAdapter(largeSqPeg);
+        if (hole.fits(smallSqPegAdapter)) {
+            System.out.println("Square peg w2 fits round hole r5.");
+        }
+        if (!hole.fits(largeSqPegAdapter)) {
+            System.out.println("Square peg w20 does not fit into round hole r5.");
+        }
+    }
+}
+</code>
+</pre>
+</body>
+
+</html>
