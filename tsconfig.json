@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+	  "allowJs": true,         // Allows JavaScript files in the project
+	  "checkJs": false,        // (Optional) Skip type-checking for JavaScript files
+	  "jsx": "react-jsx",      // Supports JSX in .tsx files
+	  "strict": true,          // Enables strict type-checking (recommended)
+	  "target": "ES6",         // Set JavaScript target version
+	  "module": "ESNext",      // Use ESNext module system
+	  "moduleResolution": "node",
+	  "resolveJsonModule": true,
+	  "esModuleInterop": true,
+	  "skipLibCheck": true
+	},
+	"include": ["src"],         // Specify the source folder
+	"exclude": ["node_modules"] // Exclude unnecessary folders
+  }
+  

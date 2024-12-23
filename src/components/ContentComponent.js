@@ -3,10 +3,10 @@ import React, { useState, useEffect, use } from 'react';
 import Card from './Card';
 import '../css/Content.css';
 import SmartContractImg from "../images/smartcontract.jpeg";
+import styled from 'styled-components';
 
-const ContentComponent = ({ title }) => {
+const ContentComponent = () => {
 const width = window.innerWidth;
-const height = window.innerHeight;
   const [currentIndex, setCurrentIndex] = useState(0);
   const cards = [
     { title: 'Metaverse ဒေသနာတော်များ အပိုင်း ( ၁ )', content: 'Web3', img: '', link: "../content/lesson_four.html" },
@@ -38,7 +38,7 @@ const height = window.innerHeight;
 
   return (
     <div className="content-component" id="content-section">
-      <h1>{title}</h1>
+	<Title>Content</Title>
       <div className="card-list">
         {cards.map((card, index) => (
           <Card
@@ -55,8 +55,11 @@ const height = window.innerHeight;
   );
 };
 
-ContentComponent.propTypes = {
-  title: PropTypes.string.isRequired,
-};
+const Title = styled.h1`
+text-align: start;
+  font-size: 1.2em;
+  color:rgb(87, 131, 87);
+  font-weight: bold;
+`;
 
 export default ContentComponent;

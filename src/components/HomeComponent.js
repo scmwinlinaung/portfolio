@@ -24,7 +24,7 @@ const socialLinks = [
 ]
 const HomeComponent = () => {
 	return (
-		<div id="home-section" style={{padding: "0.2rem"}}>
+		<div id="home-section" style={{padding: "0.6rem"}}>
 			<Title>HI, I'm Win Lin Aung</Title>
 			<SubTitle>A Result-Oriented Blockchain Developer building and managing Decentralized Websites and Web Applications that leads to the success of the overall product</SubTitle>
 			<Row>

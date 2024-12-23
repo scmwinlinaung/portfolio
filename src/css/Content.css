@@ -1,12 +1,38 @@
 .card-list {
-	padding: 40px;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	padding-left: 10px;
 	white-space: nowrap;
 	overflow-x: scroll;
 	display: flex;
 	gap: 16px;
   }
   
-
 .content-component {
 	background-color: rgba(198, 197, 197, 0.5);
+	padding: 20px;
 }
+
+/* Target the scrollbar for the entire document */
+::-webkit-scrollbar {
+	width: 12px; /* Width of the vertical scrollbar */
+	height: 12px; /* Height of the horizontal scrollbar */
+  }
+  
+  /* The scrollbar track (background) */
+  ::-webkit-scrollbar-track {
+	background: #f1f1f1; /* Light gray background */
+	border-radius: 10px;
+  }
+  
+  /* The scrollbar thumb (scroll indicator) */
+  ::-webkit-scrollbar-thumb {
+	background: #a5a4a4; /* Dark gray thumb */
+	border-radius: 10px;
+  }
+  
+  /* The scrollbar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Slightly darker thumb on hover */
+  }
+  
