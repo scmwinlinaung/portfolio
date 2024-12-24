@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect, use } from 'react';
-import Card from './Card';
+import Card from '../elements/Card';
 import '../css/Content.css';
 import SmartContractImg from "../images/smartcontract.jpeg";
 import styled from 'styled-components';

@@ -1,17 +1,29 @@
 {
-	"compilerOptions": {
-	  "allowJs": true,         // Allows JavaScript files in the project
-	  "checkJs": false,        // (Optional) Skip type-checking for JavaScript files
-	  "jsx": "react-jsx",      // Supports JSX in .tsx files
-	  "strict": true,          // Enables strict type-checking (recommended)
-	  "target": "ES6",         // Set JavaScript target version
-	  "module": "ESNext",      // Use ESNext module system
-	  "moduleResolution": "node",
-	  "resolveJsonModule": true,
-	  "esModuleInterop": true,
-	  "skipLibCheck": true
-	},
-	"include": ["src"],         // Specify the source folder
-	"exclude": ["node_modules"] // Exclude unnecessary folders
-  }
-  
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "preserve",
+    "strict": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

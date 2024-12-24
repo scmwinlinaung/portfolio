@@ -1,0 +1,64 @@
+.education-component {
+	background-color: rgba(198, 197, 197, 0.5);
+	padding-left: 20px;
+}
+.edu-card {
+	border: 2px solid cadetblue;
+	/*background-color: white;*/
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	/*flex-wrap: wrap;*/
+	padding:10px;
+	width: 20rem;
+	height: 4em;
+}
+@media screen and (max-width: 768px) {
+	.edu-card {
+	  border: 2px solid cadetblue;
+	  line-break: strict; /* Ensures strict line breaks */
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start;
+	  padding: 10px;
+	  width: 4em;
+	  height: 12em;
+	}
+  
+	.edu-card h3 {
+	  font-size: 1rem; /* Adjusted to a reasonable size */
+	  text-align: start;
+	  word-wrap: break-word;
+	  margin: 3px;
+	}
+  
+	.edu-card p {
+	  font-size: 0.9rem; /* Improved readability with a slightly larger font size */
+	  letter-spacing: 0.1em;
+	  text-align: start;
+	  word-wrap: break-word; /* Break text into lines */
+	  margin: 3px;
+	}
+  }
+  
+.edu-card h3 {
+	font-size: 1em;
+	text-align: start;
+	margin: 3px;
+}
+.edu-card p {
+	font-size: 0.7em;
+	letter-spacing: 0.1;
+	text-indent: 0.4em;
+	text-align: start;
+	margin: 3px;
+}
+
+
+.line {
+	width: 3rem;
+	height: 3px;
+	background-color: cadetblue;
+}
+
+   /* Break text into lines */

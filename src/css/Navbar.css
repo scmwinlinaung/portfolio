@@ -21,7 +21,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 5px 20px;
 	background-color: #fff;
 	color: #000;
   }
@@ -78,11 +78,9 @@
 
   /* Responsive Styles for Mobile */
   @media screen and (max-width: 768px) {
-
 	.navbar_toggle {
 	  display: flex;
 	}
-  
 	.navbar_menu {
 	  display: none; 
 	  flex-direction: column;

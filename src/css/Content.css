@@ -10,7 +10,7 @@
   
 .content-component {
 	background-color: rgba(198, 197, 197, 0.5);
-	padding: 20px;
+	padding-left: 20px;
 }
 
 /* Target the scrollbar for the entire document */

@@ -5,10 +5,10 @@ const CopyrightComponent = () => {
 		backgroundColor: 'black',
 		color: 'white',
 		textAlign: 'center',
-		padding: '10px',
 		bottom: '0',
 		width: '100%',
 		fontSize: '12px',
+		padding: '10px 0px'
 	};
 
 	return (

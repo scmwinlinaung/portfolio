@@ -4,7 +4,7 @@ import AnimatedProgressBar from '../elements/AnimatedProgressBar';
 import styled from 'styled-components';
 const skills = [
 	{title: "React", progress: 100, color: "#FFD966"},
-	{title: "React Native", progress: 100, color: "orange"},
+	{title: "React Native", progress: 100, color: "#D5A6BD "},
 	{title: "Nextjs", progress: 85, color: "yellow"}, 
 	{title: "Solidity", progress: 80, color: "lightGreen"}, 
 	{title: "Blockchain", progress: 90, color: "white"}, 
@@ -32,7 +32,6 @@ const SkillComponent = () => {
 	
 };
 const Row = styled.div`
-	margin-top: 20px;
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
@@ -43,6 +42,9 @@ text-align: start;
   font-size: 1.2em;
   color:rgb(87, 131, 87);
   font-weight: bold;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 const SkillTitle = styled.h1`
 text-align: start;
